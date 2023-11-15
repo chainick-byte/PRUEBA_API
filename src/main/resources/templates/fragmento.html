@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Mi Página</title>
+    </head>
+    <body>
+
+        <div th:fragment="fragmento">
+            <div class="form-group mt-4">
+                <label for="response">Respuesta recibida:</label>
+                <textarea class="form-control" 
+                          id="response" 
+                          rows="10" 
+                          th:text="${formularioDto.result}" 
+                          disabled="disabled"></textarea>
+            </div>
+            <div class="mt-2">
+                <a th:href="@{/orders}" type="button" class="btn btn-outline-secondary btn-lg btn-block">Ver orders</a>
+            </div>
+        </div>
+        <script>
+            
+            $(document).ready(function() {
+            var result = $("#response").val();
+            var resultado = JSON.parse(result);
+            var formattedResult = JSON.stringify(resultado, null, 2);
+            $("#response").val(formattedResult);
+            });
+        </script>
+
+    </body>
+</html>

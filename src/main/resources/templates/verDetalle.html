@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class = "container">
+            <div class = "row">
+                <div class ="col-mb-3 mt-5">
+                    <a type="submit" th:href="@{/orders}" class="btn btn-outline-secondary">Volver</a>
+                </div>
+                <div class ="col-mb-9"></div>
+            </div>
+            <form>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.orderId != null}">
+                        <label for="orderId">Order ID</label>
+                        <input type="text" class="form-control" id="orderId" th:value="${orderDetails.orderSeleccionado.orderId}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.region != null}">
+                        <label for="region">Region</label>
+                        <input type="text" class="form-control" id="region" th:value="${orderDetails.orderSeleccionado.region}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.country != null}">
+                        <label for="country">Country</label>
+                        <input type="text" class="form-control" id="country" th:value="${orderDetails.orderSeleccionado.country}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.item_type != null}">
+                        <label for="itemType">Item Type</label>
+                        <input type="text" class="form-control" id="itemType" th:value="${orderDetails.orderSeleccionado.item_type}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.sales_channel != null}">
+                        <label for="salesChannel">Sales Channel</label>
+                        <input type="text" class="form-control" id="salesChannel" th:value="${orderDetails.orderSeleccionado.sales_channel}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.priority != null}">
+                        <label for="priority">Priority</label>
+                        <input type="text" class="form-control" id="priority" th:value="${orderDetails.orderSeleccionado.priority}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.date != null}">
+                        <label for="date">Date</label>
+                        <input type="text" class="form-control" id="date" th:value="${#dates.format(orderDetails.orderSeleccionado.date, 'MM/dd/yyyy')}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.ship_date != null}">
+                        <label for="shipDate">Ship Date</label>
+                        <input type="text" class="form-control" id="shipDate" th:value="${#dates.format(orderDetails.orderSeleccionado.ship_date, 'MM/dd/yyyy')}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.units_sold != null}">
+                        <label for="unitsSold">Units Sold</label>
+                        <input type="text" class="form-control" id="unitsSold" th:value="${orderDetails.orderSeleccionado.units_sold}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.unit_price != null}">
+                        <label for="unitPrice">Unit Price</label>
+                        <input type="text" class="form-control" id="unitPrice" th:value="${orderDetails.orderSeleccionado.unit_price}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.unit_cost != null}">
+                        <label for="unitCost">Unit Cost</label>
+                        <input type="text" class="form-control" id="unitCost" th:value="${orderDetails.orderSeleccionado.unit_cost}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.total_revenue != null}">
+                        <label for="totalRevenue">Total Revenue</label>
+                        <input type="text" class="form-control" id="totalRevenue" th:value="${orderDetails.orderSeleccionado.total_revenue}" disabled="true">
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="form-group col" th:if="${orderDetails.orderSeleccionado.total_profit != null}">
+                        <label for="totalRevenue">Total Profit</label>
+                        <input type="text" class="form-control" id="totalRevenue" th:value="${orderDetails.orderSeleccionado.total_profit}" disabled="true">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </body>
+</html>

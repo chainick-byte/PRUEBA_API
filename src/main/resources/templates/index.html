@@ -1,0 +1,135 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+        <title>LibrosApi</title>
+    </head>
+    <body>
+        <div class="container">
+            <form th:object="${formularioDto}">
+                <div class="alert alert-danger" id="errorDiv" role="alert" style="display: none;">
+                    <p id ="errorP"></p>
+                </div>
+
+                <div class = "mt-2">
+                    <div class="input-group">
+                        <input type="text"
+                               th:field="*{URL}"
+                               class="form-control" 
+                               id="urlInput" 
+                               placeholder="Introduce URL de la api" 
+                               aria-label="Introduce URL de la api" 
+                               aria-describedby="button-addon2">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" id ="boton-ejecutar"   type="button">Explorar Api</button>
+                        </div>
+                    </div>
+                    <div id="resultado">
+                        <div th:if="${mostrarFragmento != null and fragmentoVisible}" th:include="fragmento :: fragmento"></div>
+                        <div th:if="${mostrarFragmento != null and !fragmentoVisible}" th:include="empty :: empty"></div>
+                    </div>
+
+                </div>
+                <div class ="row mt-2" th:if ="${formularioDto.listaTareaActivas != null}">
+                    <table id="tareas" class="table table-responsive-md table-sm table-striped mt-5">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tarea ID</th>
+                                <th scope="col">Tiempo tardado</th>
+                                <th scope="col">Modo ejecucion</th>
+                                <th scope="col">URL</th>
+                                <th scope="col">Error</th>
+                                <th scope="col">Dettale</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tarea : ${formularioDto.listaTareaActivas}">
+                                <th scope="row" th:text="${tarea.id}"></th>
+                                <td th:text="${tarea.tiempo}"></td>
+                                <td th:text="${tarea.modo}"></td>
+                                <td th:text="${tarea.url}"></td>
+                                <td th:text="${tarea.Error}"></td>
+                                <td>
+                                    <a th:href="@{'/verDetalle/' + ${tarea.id}}" class ="text-secondary">
+                                        Ver detalle
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div th:if="${formularioDto.erroresResponse!=null}">
+                    <input type="hidden" id="errorTextoError" th:value="${formularioDto.erroresResponse.textoError}" />
+                    <input type="hidden" id="errorStatus" th:value="${formularioDto.erroresResponse.status}" />
+                    <input type="hidden" id="errorCodigErrorPersonalizado" th:value="${formularioDto.erroresResponse.codigErrorPersonalizado}" />
+                </div>
+            </form>
+        </div>
+
+
+
+
+        <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>            
+            $(document).ready(function() {
+            $("#boton-ejecutar").click(function() {
+            hideError()
+            // Obtiene el valor del campo de entrada
+            var url = $("#urlInput").val();
+            var mensajeError ="";
+
+            var formularioDto  = {
+            url: url,
+            idTarea: null,
+            };
+
+            $.ajax({
+            type: "POST",
+            url: "/ejecutar-metodo",
+            data: JSON.stringify(formularioDto),
+            contentType: "application/json",
+            success: function(response) {
+            $("#resultado").html(response);
+            if ($('#errorTextoError').length > 0 && $('#errorStatus').length > 0 && $('#errorCodigErrorPersonalizado').length > 0) {
+            console.log('El campo con id "errorTextoError" existe en el documento.');
+            var textoError = $('#errorTextoError').val();
+            var errorStatus = $('#errorStatus').val();
+            var errorCodigErrorPersonalizado = $('#errorCodigErrorPersonalizado').val();
+            mensajeError = errorStatus + ' - ' + textoError + ' - (' + errorCodigErrorPersonalizado + ')';
+
+            mostrarError(mensajeError)
+            } 
+            }
+            });
+            });
+
+
+            });
+
+            function mostrarError(mensajeError) {
+            // Establecer el mensaje de error en el elemento "errorP"
+            $('#errorP').text(mensajeError);
+
+            // Mostrar el div de alerta de error
+            $('#errorDiv').show();
+            }
+
+            function hideError() {
+            $("#errorDiv").hide();
+            }
+
+        </script>
+
+
+    </body>
+</html>

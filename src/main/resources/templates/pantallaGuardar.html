@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class = "container">
+            <form th:action ="@{/orders/pantallaGuardar/unoPorUno}" method ="post" > 
+                <div class = "mt-5">
+                    <div class ="row">
+                        <div class="col">
+                            <p> El boton consume todo el contenido de la Api y va guardando cada regitro uno por uno.</p> 
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-outline-secondary btn-lg btn-block" id="unoPorUno" onmouseup="bloquearBotones()">
+                                Guardar un registro por uno</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <form th:action ="@{/orders/pantallaGuardar/insertarDeMillEnMIll}" method ="post" >
+                <div class = "mt-5">
+                    <div class ="row">
+                        <div class="col">
+                            <p>El boton consume todo el contenido de la API y va guardando de mill en mill registros</p>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-outline-secondary btn-lg btn-block" id="insertarDeMillEnMIll" onmouseup="bloquearBotones()">
+                                Guardar de mill registros en mill</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <form th:action ="@{/orders/pantallaGuardar/insertarConUnUnicoArchivoCsv}" method ="post" >
+                <div class = "mt-5">
+                    <div class ="row">
+                        <div class="col">
+                            <p>El boton consume todo el contenido de la API, genera un archivo csv y hace carga masiva con este archivo</p>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-outline-secondary btn-lg btn-block" id="insertarConUnUnicoArchivoCsv" onmouseup="bloquearBotones()">
+                                Guardar con un unico archivo CSV</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+            <form th:action ="@{/orders/pantallaGuardar/insertarConUnaParticion}" method ="post" >
+                <div class = "mt-5">
+                    <div class ="row">
+                        <div class="col">
+                            <p>El boton consume todo el contenido de la API, genera un archivos de insert parcioales de 100.000 
+                                registros hasta acabar con todos los registros  recuperados</p>
+                        </div>
+                        <div class="col">
+                            <button type="submit" class="btn btn-outline-secondary btn-lg btn-block" id="insertarConUnaParticion" onmouseup="bloquearBotones()">
+                                Guardar con archivos parciales de CSV</button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            function bloquearBotones() {
+            setTimeout(function() {
+            var botones = document.getElementsByClassName("btn-block");
+            for (var i = 0; i < botones.length; i++) {
+            botones[i].disabled = true;
+            }
+            }, 500);
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+    <body>
+
+        <div th:fragment="empty">
+
+            <div th:if="${formularioDto.erroresResponse!=null}">
+                <input type="hidden" id="errorTextoError" th:value="${formularioDto.erroresResponse.textoError}" />
+                <input type="hidden" id="errorStatus" th:value="${formularioDto.erroresResponse.status}" />
+                <input type="hidden" id="errorCodigErrorPersonalizado" th:value="${formularioDto.erroresResponse.codigErrorPersonalizado}" />
+            </div>
+        </div>
+    </body>
+</html>

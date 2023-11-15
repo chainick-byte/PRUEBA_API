@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html xmlns:th="http://www.thymeleaf.org">
+
+    <body>
+        <div th:fragment="tablaOrders">
+            <table id="orders" class="table table-responsive-md table-sm table-striped mt-5">
+                <thead>
+                    <tr>
+                        <th scope="col">Order ID</th>
+                        <th scope="col">Region</th>
+                        <th scope="col">Country</th>
+                        <th scope="col">Item type</th>
+                        <th scope="col">Sales channel</th>
+                        <th scope="col">priority</th>
+                        <th scope="col">Ver Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="order : ${ordersDto.orderPagindo.content}">
+                        <th scope="row" th:text="${order.orderId}"></th>
+                        <td th:text="${order.region}"></td>
+                        <td th:text="${order.country}"></td>
+                        <td th:text="${order.item_type}"></td>
+                        <td th:text="${order.sales_channel}"></td>
+                        <td th:text="${order.priority}"></td>
+                        <td>
+                            <a th:href="@{'/orders/' + ${order.uuid}}" class ="text-secondary">Ver Detalles</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </body>
+</html>
