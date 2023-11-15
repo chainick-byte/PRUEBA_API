@@ -19,8 +19,6 @@
 		Por otra parte, se debe crear un directorio "LIBROSAPI" en C:/. Este directorio está 
 		almacenado en CONSTANTE.ARCHIVO_URL y puede ser modificado.
 
-		Adjunto dos archivos recién generados como muestra.
-
 		Creo que con eso es todo. Espero recibir feedback cuando sea posible.
 
 		Un saludo.
