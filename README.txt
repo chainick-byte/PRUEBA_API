@@ -14,6 +14,10 @@
 		
 		Una vez todo esté instalado, se debe importar el proyecto y realizar una 
 		limpieza y construcción (clean and build). En teoría, esto debería permitir que funcione.
+		
+		Tuve que aumentar el Heap de JVM a 6gb, añadiendo este argumento "-Xmx6g" (se añade sin comillas),
+		si se arranca con netbeans una vez importado proyecto , con el boton derecho se accede a las propiedades
+		del propyecto. pestaña RUN, a textArea correspondiente a JVM options se añade la variale, se puksa ok.
 
 		En relación a la inserción y generación de los resúmenes, nunca me ha ocurrido, pero es 
 		posible que las columnas se generen en un orden incorrecto. En ese caso, habría que corregir 
@@ -21,6 +25,8 @@
 
 		Por otra parte, se debe crear un directorio "LIBROSAPI" en C:/. Este directorio está 
 		almacenado en CONSTANTE.ARCHIVO_URL y puede ser modificado.
+		
+		En la base de datos hay que crear un esquema "libros", antes de ejecutar el proyecto.
 
 		Creo que con eso es todo. Espero recibir feedback cuando sea posible.
 
