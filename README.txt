@@ -4,15 +4,13 @@
 
 		Durante el desarrollo de la prueba se utilizaron los siguientes elementos:
 
-		Sistema operativo: Windows 10
+		Sistema operativo: Windows 10, i7/8gb RAM
 		Apache NetBeans 11.1
 		Java 11
 		MySQL Server 5.7 (Si se utiliza otra versión, puede que sea necesario 
 		emplear un dialecto distinto en application.properties).
-		
-		El esquema que hay que crear "libros" 
-		
-		Una vez todo esté instalado, se debe importar el proyecto y realizar una 
+				
+		Una vez todo esté instalado, se debe importar el proyecto al netbeans(o entorno elegido) y realizar una 
 		limpieza y construcción (clean and build). En teoría, esto debería permitir que funcione.
 		
 		Tuve que aumentar el Heap de JVM a 6gb, añadiendo este argumento "-Xmx6g" (se añade sin comillas),
