@@ -9,6 +9,9 @@
 		Java 11
 		MySQL Server 5.7 (Si se utiliza otra versión, puede que sea necesario 
 		emplear un dialecto distinto en application.properties).
+		
+		El esquema que hay que crear "libros" 
+		
 		Una vez todo esté instalado, se debe importar el proyecto y realizar una 
 		limpieza y construcción (clean and build). En teoría, esto debería permitir que funcione.
 
